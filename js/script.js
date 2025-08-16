@@ -1,5 +1,24 @@
 document.getElementById('yr').textContent = new Date().getFullYear();
 
+// ===== Theme Toggle =====
+const themeToggle = document.getElementById("themeToggle");
+
+// Check if user has a saved theme
+if (localStorage.getItem("theme")) {
+  document.documentElement.setAttribute("data-theme", localStorage.getItem("theme"));
+  themeToggle.textContent = localStorage.getItem("theme") === "dark" ? "☀️" : "🌙";
+}
+
+// Toggle on click
+themeToggle.addEventListener("click", () => {
+  const currentTheme = document.documentElement.getAttribute("data-theme");
+  const newTheme = currentTheme === "dark" ? "light" : "dark";
+  document.documentElement.setAttribute("data-theme", newTheme);
+  localStorage.setItem("theme", newTheme);
+  themeToggle.textContent = newTheme === "dark" ? "☀️" : "🌙";
+});
+
+
 // ======== GALLERY IMAGES ========
 const galleryImages = [
   "images/1.jpg",
