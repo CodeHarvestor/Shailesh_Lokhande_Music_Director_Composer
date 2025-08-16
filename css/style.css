@@ -22,74 +22,145 @@
   --shadow: 0 6px 20px rgba(0,0,0,.1);
 }
 
-/* Make header a flex row */
-.hero-top {
+/* ========== GENERAL ========== */
+* { box-sizing: border-box }
+html, body { margin:0; background:var(--bg); color:var(--text) }
+body { font-family: 'Montserrat', sans-serif; line-height:1.55 }
+a { color:var(--link); text-decoration: none }
+a:hover { text-decoration: underline }
+.container { max-width: var(--maxw); margin: 0 auto; padding: 28px 20px }
+
+/* ========== HERO ========== */
+header.hero {
+  padding: 42px 0 14px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap; /* keeps things neat on mobile */
+  justify-content: space-between;
+  gap: 18px;
+  flex-wrap: wrap;
 }
 
-/* Ensure name + tag don’t get squished */
-.hero-top div {
+/* Profile photo */
+.profile-pic {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--line);
+  box-shadow: 0 4px 18px rgba(0,0,0,0.5);
+}
+
+/* Name + tagline block */
+.hero-right {
   flex: 1;
   min-width: 220px;
 }
 
-/* Theme button styles */
+.name {
+  font-family:'League Spartan', sans-serif;
+  font-weight:800;
+  font-size: clamp(28px, 6vw, 44px);
+}
+.tag {
+  color:var(--muted);
+  font-weight:600;
+  margin-top:6px;
+}
+
+/* Theme button */
 .theme-toggle {
   background: var(--card);
   color: var(--text);
   border: none;
   padding: 8px 12px;
-  border-radius: 8px;
+  border-radius: 50%;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 20px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  transition: background 0.3s ease, color 0.3s ease;
+  transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease;
 }
-.theme-toggle:hover {
-  transform: scale(1.05);
+.theme-toggle:hover { transform: scale(1.1); }
+
+/* Smaller theme button on mobile */
+@media (max-width: 600px) {
+  .theme-toggle {
+    font-size: 16px;
+    padding: 6px 8px;
+  }
 }
 
+/* ========== GRID & SECTIONS ========== */
+.grid { display:grid; gap: var(--space) }
+.two { grid-template-columns: 1fr }
+@media (min-width: 920px){ .two{ grid-template-columns: 1.2fr .8fr } }
 
+section { padding: 24px 0 }
+h2.section-title {
+  font-family:'League Spartan', sans-serif;
+  font-weight:700;
+  font-size: clamp(18px,3vw,26px);
+  margin: 0 0 10px;
+}
+.card {
+  background: var(--card);
+  border:1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 18px;
+  box-shadow: var(--shadow);
+}
+.about { font-size: 15.5px }
 
-*{box-sizing:border-box}
-html,body{margin:0;background:var(--bg);color:var(--text)}
-body{font-family: 'Montserrat', sans-serif; line-height:1.55}
-a{color:var(--link); text-decoration: none}
-a:hover{text-decoration: underline}
-.container{max-width: var(--maxw); margin: 0 auto; padding: 28px 20px}
-header.hero{padding: 42px 0 14px}
-.name{font-family:'League Spartan', sans-serif; font-weight:800; font-size: clamp(28px, 6vw, 44px)}
-.tag{color:var(--muted); font-weight:600; margin-top:6px}
-.grid{display:grid; gap: var(--space)}
-.two{grid-template-columns: 1fr}
-@media (min-width: 920px){ .two{grid-template-columns: 1.2fr .8fr} }
-section{padding: 24px 0}
-h2.section-title{font-family:'League Spartan', sans-serif; font-weight:700; font-size: clamp(18px,3vw,26px); margin: 0 0 10px}
-.card{background: var(--card); border:1px solid var(--line); border-radius: var(--radius); padding: 18px; box-shadow: var(--shadow)}
-.about{font-size: 15.5px}
+/* ========== GALLERY ========== */
+.gallery-wrap { display: grid; gap: 16px; grid-template-columns: 1fr }
+@media(min-width: 768px){ .gallery-wrap{ grid-template-columns: .9fr 1.1fr } }
 
-.gallery-wrap{display: grid; gap: 16px; grid-template-columns: 1fr}
-@media(min-width: 768px){.gallery-wrap{grid-template-columns: .9fr 1.1fr}}
+.gallery { display:grid; grid-template-columns: repeat(auto-fit,minmax(180px,1fr)); gap: 12px }
+.thumb { border-radius: 14px; overflow:hidden; aspect-ratio: 4/3; background:#222 }
+.thumb img { width:100%; height:100%; object-fit:cover; display:block; transition: transform 0.3s ease, box-shadow 0.3s ease }
+.thumb img:hover { transform: scale(1.06); box-shadow: 0 6px 18px rgba(0,0,0,0.5) }
 
-.gallery{display:grid; grid-template-columns: repeat(auto-fit,minmax(180px,1fr)); gap: 12px}
-.thumb{border-radius: 14px; overflow:hidden; aspect-ratio: 4/3; background:#222}
-.thumb img{width:100%; height:100%; object-fit:cover; display:block}
+/* ========== WORK PROFILE (VIDEOS) ========== */
+.worklist { display:grid; gap:12px }
+.work-item {
+  border:1px solid var(--line);
+  border-radius: 16px;
+  padding:16px;
+  background:var(--card);
+}
+.work-title { font-weight:700; margin-top:8px }
+.work-sub { color:var(--muted) }
+.work-desc { font-size: 14px; color: var(--muted); margin-top:4px }
 
-.worklist{display:grid; gap:12px}
-.work-item{border:1px solid var(--line); border-radius: 16px; padding:16px; background:var(--card)}
-.work-title{font-weight:700; margin-top:8px}
-.work-sub{color:var(--muted)}
-.work-desc{font-size: 14px; color: var(--muted); margin-top:4px}
-.video-thumb{display:block; overflow:hidden; border-radius: 12px; aspect-ratio:16/9;}
-.video-thumb img{width:100%; height:100%; object-fit:cover;}
+.video-thumb {
+  display:block;
+  overflow:hidden;
+  border-radius: 12px;
+  aspect-ratio:16/9;
+}
+.video-thumb img {
+  width:100%; height:100%; object-fit:cover;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.video-thumb img:hover {
+  transform: scale(1.06);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.5);
+}
 
-.divider{height:1px; background: var(--line); margin: 10px 0 0}
-footer{padding: 28px 0 42px; color:var(--muted)}
-.contact{display:flex; gap:14px; flex-wrap:wrap; margin-top:12px}
-.pill{display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border:1px solid var(--line); border-radius: 999px; background:var(--card); color:var(--text); font-weight:600}
-.icons{margin-top:10px; display:flex; gap:10px}
-.icons img{width:38px; height:38px; border-radius:50%}
-.muted{color:var(--muted)}
+/* ========== FOOTER ========== */
+.divider { height:1px; background: var(--line); margin: 10px 0 0 }
+footer { padding: 28px 0 42px; color:var(--muted) }
+.contact { display:flex; gap:14px; flex-wrap:wrap; margin-top:12px }
+.pill {
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 14px;
+  border:1px solid var(--line);
+  border-radius: 999px;
+  background:var(--card);
+  color:var(--text);
+  font-weight:600;
+}
+.icons { margin-top:10px; display:flex; gap:10px }
+.icons img { width:38px; height:38px; border-radius:50% }
+.muted { color:var(--muted) }
