@@ -33,6 +33,7 @@ gallery.innerHTML = galleryImages.map(src =>
   `<div class="thumb"><img src="${src}" alt="Gallery photo"></div>`
 ).join('');
 
+
 // ======== WORK PROFILE VIDEOS ========
 const workItems = [
   {
@@ -102,3 +103,14 @@ document.querySelectorAll('.video-thumb').forEach(thumb => {
     `;
   });
 });
+// ========= Inject Play Button on All Video Thumbnails =========
+document.addEventListener("DOMContentLoaded", () => {
+  const videoThumbs = document.querySelectorAll(".video-thumb");
+  videoThumbs.forEach(thumb => {
+    const playBtn = document.createElement("span");
+    playBtn.classList.add("play-btn");
+    playBtn.textContent = "▶";
+    thumb.appendChild(playBtn);
+  });
+});
+
