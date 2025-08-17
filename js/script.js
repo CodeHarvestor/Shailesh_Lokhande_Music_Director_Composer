@@ -1,116 +1,117 @@
+// ===== Year
 document.getElementById('yr').textContent = new Date().getFullYear();
 
-// ===== Theme Toggle =====
-const themeToggle = document.getElementById("themeToggle");
+// ===== Theme Toggle with persistence
+(function themeInit(){
+  const btn = document.getElementById('themeToggle');
+  const root = document.documentElement;
+  const saved = localStorage.getItem('theme');
+  if (saved) root.setAttribute('data-theme', saved);
+  btn.addEventListener('click', () => {
+    const current = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    root.setAttribute('data-theme', current);
+    localStorage.setItem('theme', current);
+  });
+})();
 
-// Check if user has a saved theme
-if (localStorage.getItem("theme")) {
-  document.documentElement.setAttribute("data-theme", localStorage.getItem("theme"));
-  themeToggle.textContent = localStorage.getItem("theme") === "dark" ? "☀️" : "🌙";
-}
+// ===== Typing effect for tagline
+(function typing(){
+  const el = document.getElementById('typing');
+  const phrases = [
+    'Composer of Emotions',
+    'Music Director & Storyteller',
+    'Crafting Tunes that Move'
+  ];
+  let i = 0, j = 0, deleting = false;
 
-// Toggle on click
-themeToggle.addEventListener("click", () => {
-  const currentTheme = document.documentElement.getAttribute("data-theme");
-  const newTheme = currentTheme === "dark" ? "light" : "dark";
-  document.documentElement.setAttribute("data-theme", newTheme);
-  localStorage.setItem("theme", newTheme);
-  themeToggle.textContent = newTheme === "dark" ? "☀️" : "🌙";
-});
-
-
-// ======== GALLERY IMAGES ========
-const galleryImages = [
-  "images/1.jpg",
-  "images/2.jpg",
-  "images/3.jpg",
-  "images/4.jpg",
-  "images/5.jpg"
-];
-
-const gallery = document.getElementById('gallery');
-gallery.innerHTML = galleryImages.map(src =>
-  `<div class="thumb"><img src="${src}" alt="Gallery photo"></div>`
-).join('');
-
-
-// ======== WORK PROFILE VIDEOS ========
-const workItems = [
-  {
-    title: "Bappa Morya Re",
-    sub: "By Shankar Mahadevan",
-    desc: "“Bappa Morya Re” is a heartfelt tribute to Pune’s most revered Ganpati – Shrimant Bhausaheb Rangari Ganpati, the deity with whom India’s first public Ganeshotsav began. Celebrating history, devotion, and culture, this song beautifully blends traditional fervor with a modern musical touch.",
-    id: "7_GFOC8rifo"
-  },
-  {
-    title: "Ghe Damana",
-    sub: "Dance Number",
-    desc: "A high-voltage blend of bold beats and catchy hooks bringing unstoppable energy to the dance floor.",
-    id: "SGe2dEz3c3E"
-  },
-  {
-    title: "Sobati",
-    sub: "Where Love Finds Its Tune",
-    desc: "A soulful melody that captures tenderness and companionship—romance wrapped in rhythm.",
-    id: "oBzfjhPk3J8"
-  },
-  {
-    title: "Vaju De Rhythm",
-    sub: "A Tribute to Friendship",
-    desc: "A lively celebration of friendship—blending fun, freedom, and fierce vibes into a musical ride.",
-    id: "loUt32_Ttug"
-  },
-  {
-    title: "Ala Re Dhiraj Ala Re",
-    sub: "The Voice of the People",
-    desc: "A high-energy anthem echoing hope, leadership, and the spirit of change.",
-    id: "StqMFLPDfM8"
-  },
-  {
-    title: "Swachha Latur Song",
-    sub: "A Call for Cleanliness",
-    desc: "An inspiring anthem encouraging a cleaner, greener Latur with catchy rhythm.",
-    id: "fIcN0sBVQsM"
-  },
-  {
-    title: "Chaturthi (Namo Shree Ganesha)",
-    sub: "Devotional",
-    desc: "A soul-stirring tribute to Lord Ganesha blending divine devotion with uplifting melody.",
-    id: "bHKNITdGSMQ"
+  function tick(){
+    const p = phrases[i];
+    if(!deleting){
+      el.textContent = p.slice(0, j++);
+      if (j > p.length + 8) deleting = true;
+    } else {
+      el.textContent = p.slice(0, j--);
+      if (j === 0){ deleting = false; i = (i+1) % phrases.length; }
+    }
+    setTimeout(tick, deleting ? 50 : 90);
   }
-];
+  tick();
+})();
 
-const worklist = document.getElementById('worklist');
-worklist.innerHTML = workItems.map((item, idx) => `
-  <div class="work-item">
-    <div class="video-thumb" data-id="${item.id}">
-      <img src="https://img.youtube.com/vi/${item.id}/hqdefault.jpg" alt="${item.title}">
-    </div>
-    <div class="work-title">${item.title} <span class="work-sub">· ${item.sub}</span></div>
-    <div class="work-desc">${item.desc}</div>
-  </div>
-`).join('');
-
-// ======== CLICK TO PLAY VIDEO ========
-document.querySelectorAll('.video-thumb').forEach(thumb => {
-  thumb.addEventListener('click', function() {
-    const videoId = this.getAttribute('data-id');
-    this.innerHTML = `
-      <iframe width="100%" height="100%" src="https://www.youtube.com/embed/${videoId}?autoplay=1"
-      title="YouTube video player" frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen></iframe>
-    `;
-  });
-});
-// ========= Inject Play Button on All Video Thumbnails =========
-document.addEventListener("DOMContentLoaded", () => {
-  const videoThumbs = document.querySelectorAll(".video-thumb");
-  videoThumbs.forEach(thumb => {
-    const playBtn = document.createElement("span");
-    playBtn.classList.add("play-btn");
-    playBtn.textContent = "▶";
-    thumb.appendChild(playBtn);
-  });
+// ===== AOS (scroll animations)
+AOS.init({
+  once: true,
+  duration: 700,
+  offset: 80,
+  easing: 'ease-out'
 });
 
+// ===== Parallax subtle on hero background
+(function parallax(){
+  const bg = document.querySelector('.hero-bg');
+  if(!bg) return;
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY * 0.15;
+    bg.style.transform = `translateY(${y}px)`;
+  });
+})();
+
+// ===== Inject Play Button overlay for all video thumbs
+(function addPlayOverlays(){
+  document.querySelectorAll('.video-thumb').forEach(t => {
+    const wrap = document.createElement('span');
+    wrap.className = 'play-btn';
+    wrap.innerHTML = `<span class="dot"><span class="triangle"></span></span>`;
+    t.appendChild(wrap);
+  });
+})();
+
+// ===== Inline YouTube player on click (replaces thumbnail)
+(function inlinePlayers(){
+  function createIframe(id){
+    const iframe = document.createElement('iframe');
+    iframe.width = '100%';
+    iframe.height = '100%';
+    iframe.loading = 'lazy';
+    iframe.allow =
+      'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+    iframe.allowFullscreen = true;
+    iframe.style.border = '0';
+    iframe.src = `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
+    return iframe;
+  }
+
+  document.querySelectorAll('.work-item').forEach(item => {
+    const link = item.querySelector('.video-thumb');
+    if(!link) return;
+    const ytId = link.getAttribute('data-video');
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      // replace the image with iframe
+      if (item.querySelector('iframe')) return; // already replaced
+      const iframe = createIframe(ytId);
+      link.replaceWith(iframe);
+    });
+  });
+})();
+
+// OPTIONAL: Autoplay first video silently as hero banner? (We keep it off by default)
+// If you want: create a hero video container and inject muted autoplay loop.
+
+// ===== Small tilt effect on cards (subtle)
+(function tilt(){
+  const els = document.querySelectorAll('.tilt');
+  els.forEach(el => {
+    el.addEventListener('mousemove', (e) => {
+      const r = el.getBoundingClientRect();
+      const x = e.clientX - r.left;
+      const y = e.clientY - r.top;
+      const rx = ((y / r.height) - 0.5) * -4; // rotation X
+      const ry = ((x / r.width) - 0.5) * 4;  // rotation Y
+      el.style.transform = `perspective(700px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-4px)`;
+    });
+    el.addEventListener('mouseleave', () => {
+      el.style.transform = '';
+    });
+  });
+})();
