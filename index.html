@@ -1,83 +1,190 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>S. Chandra – Music Director | Portfolio</title>
+  <meta name="description" content="Portfolio of Shailesh Chandra Lokhande – Music Director & Composer. Moments in Melody, Work Profile, and Contact." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@600;700;800&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- AOS (Animate On Scroll) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div class="container">
-    <header class="hero">
-      <img src="images/profile.jpg" alt="Shailesh Chandra Lokhande" class="profile-pic">
+
+  <!-- NAVBAR -->
+  <header class="topnav">
+    <div class="container nav-inner">
+      <a class="brand" href="#hero">S. Chandra</a>
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#work">Work</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme" title="Toggle theme">☀️/🌙</button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="hero" class="hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="container hero-wrap" data-aos="fade-up">
+      <img src="images/profile.jpg" alt="Shailesh Chandra Lokhande" class="profile-pic" />
       <div class="hero-right">
-        <div class="name">Shailesh Chandra Lokhande</div>
-        <div class="tag">Freelance Music Director · Composer of Emotions</div>
+        <h1 class="name">Shailesh Chandra Lokhande</h1>
+        <p class="tag">
+          <span id="typing"></span>
+        </p>
+        <a href="#work" class="cta">Explore My Work ↓</a>
       </div>
-      <button id="themeToggle" class="theme-toggle">☀️/🌙</button>
-    </header>
-    <section class="grid two">
-      <div>
-        <h2 class="section-title">About Me</h2>
-        <div class="card about">
-          <p> I'm Shailesh Chandra Lokhande, a freelance music director with 10+ 
-            years of experience in composing soulful, powerful, and catchy tunes.
-             From devotional and inspirational songs to political campaign 
-            anthems, item numbers, and commercial jingles—I bring every genre to 
-            life. Music, for me, is emotion in motion—crafted to move hearts, minds, 
-            and feet.Every track I create tells a story and leaves a lasting echo. Let's 
-            make music that matters.</p>
-        </div>
+    </div>
+  </section>
 
-        <h2 class="section-title" style="margin-top:22px">Moments in Melody</h2>
-        <div class="gallery-wrap">
-          <aside class="gallery-side card">
-            <h3 class="side-title">Moments in Melody</h3>
-            <p>Creating magic with some of the finest voices in the industry—every collaboration is a celebration of sound, soul, and shared passion. These snapshots aren’t just memories; they’re milestones in my musical journey. Because when legends sing your tunes, the music speaks louder than ever.</p>
-          </aside>
-          <div class="gallery card" id="gallery"></div>
-        </div>
+  <!-- ABOUT + GALLERY -->
+  <section id="about" class="section">
+    <div class="container">
+      <h2 class="section-title">About Me</h2>
+      <div class="card about" data-aos="fade-up">
+        <p>
+          I’m Shailesh Chandra Lokhande, a freelance music director with 10+ years of experience in composing soulful, powerful, and catchy tunes.
+          From devotional and inspirational songs to political campaign anthems, item numbers, and commercial jingles—I bring every genre to life.
+          Music, for me, is emotion in motion—crafted to move hearts, minds, and feet. Every track I create tells a story and leaves a lasting echo.
+          Let’s make music that matters.
+        </p>
       </div>
 
-      <aside>
-        <h2 class="section-title">Work Profile</h2>
-        <div id="worklist" class="worklist"></div>
-      </aside>
-    </section>
+      <h2 class="section-title" style="margin-top:22px">Moments in Melody</h2>
+      <div class="gallery-wrap">
+        <!-- Left: Description -->
+        <aside class="gallery-side card" data-aos="fade-right">
+          <h3 class="side-title">Moments in Melody</h3>
+          <p>
+            Creating magic with some of the finest voices in the industry—every collaboration is a celebration of sound,
+            soul, and shared passion. These snapshots aren’t just memories; they’re milestones in my musical journey.
+            Because when legends sing your tunes, the music speaks louder than ever.
+          </p>
+        </aside>
 
-    <section>
-      <div class="card">
-        <h2 class="section-title">Thank You</h2>
-        <p>Thank you for taking the time to explore my musical journey...</p>
+        <!-- Right: Grid -->
+        <div id="gallery" class="gallery card" data-aos="fade-left" aria-live="polite">
+          <!-- Replace these with your actual images in /images/ -->
+          <div class="thumb tilt"><img loading="lazy" src="images/1.jpg" alt="Portfolio photo 1"></div>
+          <div class="thumb tilt"><img loading="lazy" src="images/2.jpg" alt="Portfolio photo 2"></div>
+          <div class="thumb tilt"><img loading="lazy" src="images/3.jpg" alt="Portfolio photo 3"></div>
+          <div class="thumb tilt"><img loading="lazy" src="images/4.jpg" alt="Portfolio photo 4"></div>
+          <div class="thumb tilt"><img loading="lazy" src="images/5.jpg" alt="Portfolio photo 5"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK PROFILE -->
+  <section id="work" class="section">
+    <div class="container">
+      <h2 class="section-title">Work Profile</h2>
+
+      <div class="worklist">
+        <!-- Each .work-item data-video holds the YouTube ID -->
+        <div class="work-item card tilt" data-aos="fade-up">
+          <a class="video-thumb" href="https://youtu.be/7_GFOC8rifo" data-video="7_GFOC8rifo">
+            <img src="https://img.youtube.com/vi/7_GFOC8rifo/hqdefault.jpg" alt="Bappa Morya Re">
+          </a>
+          <div class="work-title">Bappa Morya Re <span class="work-sub">· By Shankar Mahadevan</span></div>
+          <div class="work-desc">“Bappa Morya Re” is a heartfelt tribute to Pune’s most revered Ganpati – Shrimant Bhausaheb Rangari Ganpati, the deity with whom India’s first public Ganeshotsav began. Celebrating history, devotion, and culture, this song beautifully blends traditional fervor with a modern musical touch.</div>
+        </div>
+
+        <div class="work-item card tilt" data-aos="fade-up" data-aos-delay="50">
+          <a class="video-thumb" href="https://youtu.be/SGe2dEz3c3E" data-video="SGe2dEz3c3E">
+            <img src="https://img.youtube.com/vi/SGe2dEz3c3E/hqdefault.jpg" alt="Ghe Damana">
+          </a>
+          <div class="work-title">Ghe Damana <span class="work-sub">· Dance Number</span></div>
+          <div class="work-desc">A high-voltage blend of bold beats and catchy hooks bringing unstoppable energy to the dance floor.</div>
+        </div>
+
+        <div class="work-item card tilt" data-aos="fade-up" data-aos-delay="100">
+          <a class="video-thumb" href="https://youtu.be/oBzfjhPk3J8" data-video="oBzfjhPk3J8">
+            <img src="https://img.youtube.com/vi/oBzfjhPk3J8/hqdefault.jpg" alt="Sobati">
+          </a>
+          <div class="work-title">Sobati <span class="work-sub">· Where Love Finds Its Tune</span></div>
+          <div class="work-desc">A soulful melody that captures tenderness and companionship—romance wrapped in rhythm.</div>
+        </div>
+
+        <div class="work-item card tilt" data-aos="fade-up" data-aos-delay="150">
+          <a class="video-thumb" href="https://youtu.be/loUt32_Ttug" data-video="loUt32_Ttug">
+            <img src="https://img.youtube.com/vi/loUt32_Ttug/hqdefault.jpg" alt="Vaju De Rhythm">
+          </a>
+          <div class="work-title">Vaju De Rhythm <span class="work-sub">· A Tribute to Friendship</span></div>
+          <div class="work-desc">A lively celebration of friendship—blending fun, freedom, and fierce vibes into a musical ride.</div>
+        </div>
+
+        <div class="work-item card tilt" data-aos="fade-up" data-aos-delay="200">
+          <a class="video-thumb" href="https://youtu.be/StqMFLPDfM8" data-video="StqMFLPDfM8">
+            <img src="https://img.youtube.com/vi/StqMFLPDfM8/hqdefault.jpg" alt="Ala Re Dhiraj Ala Re">
+          </a>
+          <div class="work-title">Ala Re Dhiraj Ala Re <span class="work-sub">· The Voice of the People</span></div>
+          <div class="work-desc">A high-energy anthem echoing hope, leadership, and the spirit of change.</div>
+        </div>
+
+        <div class="work-item card tilt" data-aos="fade-up" data-aos-delay="250">
+          <a class="video-thumb" href="https://youtu.be/fIcN0sBVQsM" data-video="fIcN0sBVQsM">
+            <img src="https://img.youtube.com/vi/fIcN0sBVQsM/hqdefault.jpg" alt="Swachha Latur Song">
+          </a>
+          <div class="work-title">Swachha Latur Song <span class="work-sub">· A Call for Cleanliness</span></div>
+          <div class="work-desc">An inspiring anthem encouraging a cleaner, greener Latur with catchy rhythm.</div>
+        </div>
+
+        <div class="work-item card tilt" data-aos="fade-up" data-aos-delay="300">
+          <a class="video-thumb" href="https://youtu.be/bHKNITdGSMQ" data-video="bHKNITdGSMQ">
+            <img src="https://img.youtube.com/vi/bHKNITdGSMQ/hqdefault.jpg" alt="Chaturthi (Namo Shree Ganesha)">
+          </a>
+          <div class="work-title">Chaturthi (Namo Shree Ganesha) <span class="work-sub">· Devotional</span></div>
+          <div class="work-desc">A soul-stirring tribute to Lord Ganesha blending divine devotion with uplifting melody.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section">
+    <div class="container">
+      <div class="card" data-aos="fade-up">
+        <h2 class="section-title">Contact</h2>
+        <p>Thank you for taking the time to explore my musical journey. For collaborations, commissions, and licensing, reach out anytime.</p>
         <div class="divider"></div>
+
         <div class="contact">
           <a class="pill" href="tel:+919860904030">📞 Call</a>
           <a class="pill" href="mailto:Shail24music@gmail.com">✉️ Email</a>
-          <a class="pill" href="https://wa.me/919860904030" target="_blank">💬 WhatsApp</a>
+          <a class="pill" href="https://wa.me/919860904030" target="_blank" rel="noopener">💬 WhatsApp</a>
         </div>
+
         <div class="icons">
-          <a href="https://www.facebook.com/share/1AMKHtNCMy/?mibextid=wwXIfr" target="_blank">
+          <!-- Clean colored PNGs via Flaticon CDN -->
+          <a href="https://www.facebook.com/share/1AMKHtNCMy/?mibextid=wwXIfr" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook">
             <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" width="36" height="36">
           </a>
-          <a href="https://www.instagram.com/im_s_chandra" target="_blank">
+          <a href="https://www.instagram.com/im_s_chandra" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram">
             <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" width="36" height="36">
           </a>
-          <a href="https://youtube.com/@shaileshchandralokhande5853" target="_blank">
+          <a href="https://youtube.com/@shaileshchandralokhande5853" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube">
             <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube" width="36" height="36">
           </a>
-        </div> 
+        </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <footer>
+  <footer class="footer">
+    <div class="container">
       <small class="muted">© <span id="yr"></span> Shailesh Chandra Lokhande · Portfolio</small>
-    </footer>
-  </div>
+    </div>
+  </footer>
 
+  <!-- AOS JS -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script src="js/script.js"></script>
 </body>
 </html>
-
